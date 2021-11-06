@@ -21,12 +21,12 @@ wss.on("connection", function (ws) {
   console.log("websocket connection open")
   ws.send('welcome new cliente')
 
-  ws.on('message', (message, isBinary) => {
+  ws.on('message', function (message, isBinary) {
     console.log('received: ' + message)
     // ws.send('got your message: ' + message)
 
     //all clientes
-    wss.clients.forEach((client) => {
+    wss.clients.forEach(function (client) {
       client.send(message, { binary: isBinary });
     });
 
